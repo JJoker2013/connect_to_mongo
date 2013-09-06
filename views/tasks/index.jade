@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1 Your Tasks
+
+    - if(docs.length)
+      table(style="padding:8px;background-color:#ccc", width="100%")
+        tr
+          th(style="font-size:20px") Task
+          th
+            each task in docs
+              tr
+                td(style="font-size:18px;padding:4px") - #{task.task}
+                td
+                  a.tbn(href="/tasks/#{task.id}/edit") Edit
+    - else
+      h2 You don't have any tasks!
+  
+  p(style="padding:8px;background-color:#aaa")
+    a(href='/tasks/new', class='btn') Add a Task
