@@ -6,13 +6,18 @@ block content
     - if(docs.length)
       table(style="padding:8px;background-color:#ccc", width="100%")
         tr
-          th(style="font-size:20px") Task
           th
+          th
+          th(style="font-size:20px") Task
             each task in docs
               tr
-                td(style="font-size:18px;padding:4px") - #{task.task}
-                td
-                  a.tbn(href="/tasks/#{task.id}/edit") Edit
+                td(style="font-size:18px;padding:4px;")
+                  a(href="/tasks/#{task.id}/edit" class='btn') Edit
+                td(style="font-size:18px;padding:4px;")
+                  form(method='post', action='/tasks/' + task.id, style="padding:0;margin:0;")
+                    input(name='_method', value='DELETE', type='hidden')
+                    button.btn(type='submit') Delete
+                td(style="font-size:18px;padding:4px;") #{task.task}
     - else
       h2 You don't have any tasks!
   
